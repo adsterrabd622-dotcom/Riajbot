@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TooL H4X0R v3</title>
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- LibTL Ad SDK -->
+  <script src='//libtl.com/sdk.js' data-zone='10734218' data-sdk='show_10734218'></script>
+    
+    <style>
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0A1828 0%, #1A2B3C 100%);
+            position: relative;
+        }
+        
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.03) 0%, transparent 30%),
+                              radial-gradient(circle at 70% 60%, rgba(212, 175, 55, 0.03) 0%, transparent 40%),
+                              repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.02) 0px, rgba(212, 175, 55, 0.02) 2px, transparent 2px, transparent 10px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .orb {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.15), rgba(10, 24, 40, 0));
+            top: -200px;
+            right: -200px;
+            filter: blur(60px);
+            z-index: 0;
+            animation: float-orb 20s infinite alternate ease-in-out;
+        }
+        
+        .orb-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 70% 70%, rgba(10, 24, 40, 0.3), rgba(212, 175, 55, 0.1));
+            bottom: -250px;
+            left: -250px;
+            filter: blur(80px);
+            z-index: 0;
+            animation: float-orb-2 25s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float-orb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.2); }
+        }
+        
+        @keyframes float-orb-2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-50px, -30px) scale(1.3); }
+        }
+        
+        .card {
+            background: rgba(20, 35, 50, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5), 
+                        0 0 0 1px rgba(212, 175, 55, 0.1) inset,
+                        0 0 30px rgba(212, 175, 55, 0.1);
+            max-width: 400px;
+            width: 95%;
+            border-radius: 36px;
+            position: relative;
+            z-index: 10;
+            padding: 1.5rem !important;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #F4D03F, #E5B73B, #C99A2E);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        
+        .elegant-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 2.3rem;
+            background: linear-gradient(135deg, #fff, #F4D03F);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            margin-bottom: 0.1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle-premium {
+            color: #a0b8cc;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            font-size: 0.9rem;
+        }
+        
+        .progress-ring-premium {
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+            width: 180px;
+            height: 180px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .progress-ring-premium svg {
+            width: 180px;
+            height: 180px;
+        }
+        
+        .counter-premium {
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #F4D03F);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+        
+        .btn-premium {
+            position: relative;
+            border: none;
+            border-radius: 100px;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .btn-premium:hover::before {
+            left: 100%;
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.5);
+        }
+        
+        .btn-premium:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #F4D03F, #C99A2E);
+            color: #0A1828;
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-gold-secondary {
+            background: rgba(20, 35, 50, 0.9);
+            color: #F4D03F;
+            border: 1.5px solid rgba(212, 175, 55, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-gold-secondary:hover {
+            background: rgba(30, 45, 65, 0.95);
+            border-color: #F4D03F;
+        }
+        
+        .divider-premium {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.6), rgba(212, 175, 55, 0.3), transparent);
+            margin: 12px 0;
+        }
+        
+        .badge-premium {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #F4D03F;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-premium {
+            background: rgba(15, 28, 42, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 36px;
+            box-shadow: 0 50px 80px -20px black, 0 0 0 1px rgba(212, 175, 55, 0.3) inset, 0 0 50px rgba(212, 175, 55, 0.2);
+            padding: 1.5rem !important;
+        }
+        
+        .icon-premium {
+            width: 60px;
+            height: 60px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #F4D03F, #C99A2E);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            box-shadow: 0 15px 20px -8px rgba(212, 175, 55, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+        }
+        
+        .glow-effect {
+            animation: glowPulse 3s infinite;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 6px 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        
+        .corner-accent {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            opacity: 0.5;
+        }
+        
+        .corner-tl {
+            top: 12px;
+            left: 12px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 16px 0 0 0;
+        }
+        
+        .corner-br {
+            bottom: 12px;
+            right: 12px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 16px 0;
+        }
+        
+        #greeting {
+            margin-bottom: 0.1rem;
+            font-size: 0.9rem;
+        }
+        
+        .compact-desc {
+            max-width: 240px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.85rem;
+        }
+        
+        .grid {
+            gap: 0.5rem;
+        }
+        
+        .footer-compact {
+            margin-top: 0.75rem;
+            gap: 0.5rem;
+        }
+        
+        .footer-compact i {
+            font-size: 0.7rem;
+        }
+        
+        .footer-compact p {
+            font-size: 0.65rem;
+        }
+        
+        .count-badge {
+            font-size: 0.8rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            padding: 2px 8px;
+            display: inline-block;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-3">
+    <!-- Premium background elements -->
+    <div class="bg-pattern"></div>
+    <div class="orb"></div>
+    <div class="orb-2"></div>
+    
+    <script>
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+        
+        const tp = Telegram.WebApp.themeParams;
+        document.documentElement.style.setProperty('--tg-bg', tp.bg_color || '#0A1828');
+        document.documentElement.style.setProperty('--tg-text', tp.text_color || '#F4D03F');
+        document.documentElement.style.setProperty('--tg-button', tp.button_color || '#C99A2E');
+        document.documentElement.style.setProperty('--tg-button-text', tp.button_text_color || '#0A1828');
+    </script>
+    
+    <div class="card text-center relative compact">
+        <!-- Corner accents -->
+        <div class="corner-accent corner-tl"></div>
+        <div class="corner-accent corner-br"></div>
+        
+        <!-- Greeting -->
+        <div class="flex items-center justify-center gap-2 mb-2">
+            <i class="fas fa-crown text-sm" style="color: #F4D03F;"></i>
+            <h2 id="greeting" class="subtitle-premium"></h2>
+        </div>
+        
+        <!-- Title -->
+        <h1 class="elegant-title">
+           TooL H4X0R
+        </h1>
+        <div class="text-xl gold-gradient mb-1">v3.0</div>
+        
+        <!-- Premium badge with counts -->
+        <div class="badge-premium mb-3">
+            <i class="fas fa-gem mr-1 text-xs"></i> PREMIUM ACCESS
+        </div>
+        
+        <!-- Description -->
+        <p class="subtitle-premium compact-desc mb-3 leading-relaxed">
+            Watch ads and earn rewards. Simple, fast, and secure.
+        </p>
+        
+        <!-- Stats row with counters -->
+        <div class="flex justify-center gap-2 mb-3">
+            <div class="stat-item flex items-center">
+                <i class="fas fa-bolt text-xs" style="color: #F4D03F;"></i>
+                <span class="text-xs text-gray-400 ml-1" id="interstitialCount">I:0</span>
+            </div>
+            <div class="stat-item flex items-center">
+                <i class="fas fa-window-maximize text-xs" style="color: #F4D03F;"></i>
+                <span class="text-xs text-gray-400 ml-1" id="popupCount">P:0</span>
+            </div>
+        </div>
+        
+        <!-- Progress circle -->
+        <div class="relative progress-ring-premium mx-auto mb-3">
+            <svg class="w-full h-full -rotate-90">
+                <defs>
+                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#F4D03F" />
+                        <stop offset="50%" stop-color="#E5B73B" />
+                        <stop offset="100%" stop-color="#C99A2E" />
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Background circle -->
+                <circle cx="90" cy="90" r="75" stroke="rgba(212, 175, 55, 0.15)" stroke-width="10" fill="none"/>
+                <!-- Progress circle with glow -->
+                <circle id="progressCircle" cx="90" cy="90" r="75" stroke="url(#goldGradient)" stroke-width="10" fill="none"
+                        stroke-dasharray="471" stroke-dashoffset="471" stroke-linecap="round"
+                        class="transition-all duration-1000 ease-out" filter="url(#glow)"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <div id="counter" class="counter-premium">0</div>
+                <div class="text-xs subtitle-premium -mt-1">of 60</div>
+            </div>
+        </div>
+        
+        <!-- Divider -->
+        <div class="divider-premium"></div>
+        
+        <!-- Action buttons -->
+        <div class="grid grid-cols-1 gap-2">
+            <button id="watchInterstitialBtn" 
+                    class="btn-premium btn-gold disabled:opacity-40 disabled:cursor-not-allowed">
+                <i class="fas fa-play mr-2"></i> INTERSTITIAL <span id="interstitialBadge" class="count-badge">55 left</span>
+            </button>
+            <button id="watchPopupBtn" 
+                    class="btn-premium btn-gold-secondary disabled:opacity-40 disabled:cursor-not-allowed">
+                <i class="fas fa-window-maximize mr-2"></i> POPUP <span id="popupBadge" class="count-badge">5 left</span>
+            </button>
+        </div>
+        
+        <!-- Footer note -->
+        <div class="flex items-center justify-center footer-compact mt-2">
+            <i class="fas fa-shield-alt" style="color: #F4D03F; opacity: 0.5;"></i>
+            <p class="text-xs subtitle-premium">Secure • Fast • Rewarding</p>
+            <i class="fas fa-shield-alt" style="color: #F4D03F; opacity: 0.5;"></i>
+        </div>
+    </div>
+    
+    <!-- 60 Ads Limit Modal - Airplane Mode Instruction -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-70 backdrop-blur-md flex items-center justify-center p-4 z-50 transition-all">
+        <div class="modal-premium max-w-sm w-full text-center relative">
+            <div class="icon-premium">
+                <i class="fas fa-plane text-2xl" style="color: #0A1828;"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-1 gold-gradient">LIMIT REACHED</h2>
+            <div class="badge-premium mb-3">MAXIMUM 60 ADS</div>
+            <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+                <i class="fas fa-wifi-slash mr-1"></i> Turn OFF Wi-Fi/Mobile Data<br>
+                <i class="fas fa-plane mr-1"></i> Enable Airplane Mode for 10 seconds<br>
+                <i class="fas fa-sync-alt mr-1"></i> Then click RESET
+            </p>
+            <button id="resetBtn" 
+                    class="btn-premium btn-gold w-full text-base py-3">
+                <i class="fas fa-sync-alt mr-2"></i> RESET COUNTER
+            </button>
+            <p class="text-xs text-gray-500 mt-3">IP will be reset automatically</p>
+        </div>
+    </div>
+
+    <!-- 15s Ad Modal (Shows after every 3 ads) -->
+    <div id="fifteenSecModal" class="hidden fixed inset-0 bg-black bg-opacity-70 backdrop-blur-md flex items-center justify-center p-4 z-50 transition-all">
+        <div class="modal-premium max-w-sm w-full text-center">
+            <div class="icon-premium glow-effect">
+                <i class="fas fa-hourglass-half text-2xl" style="color: #0A1828;"></i>
+            </div>
+            <h2 class="text-xl font-bold mb-1 gold-gradient">15 SECONDS REQUIRED</h2>
+            <div class="badge-premium mb-3">3 ADS COMPLETED</div>
+            <p class="text-gray-300 text-sm mb-4">
+                Watch <span class="gold-gradient font-bold">15 second ad</span> to continue
+            </p>
+            <button id="watchFifteenSecBtn" 
+                    class="btn-premium btn-gold w-full mb-2 text-base py-3">
+                <i class="fas fa-play mr-2"></i> WATCH 15s AD
+            </button>
+            <button id="skipFifteenSecBtn" 
+                    class="text-xs subtitle-premium hover:text-[#F4D03F] transition-colors">
+                Maybe later
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Ad counters
+        let interstitialCount = 0;
+        let popupCount = 0;
+        let totalAds = 0;
+        const maxAds = 60;
+        const fullCircumference = 471;
+        
+        // Flags
+        let lastAdType = null;
+        let consecutiveAds = 0;
+        
+        const user = Telegram.WebApp.initDataUnsafe.user;
+        const displayName = user?.username ? '@' + user.username : (user?.first_name || 'User');
+        document.getElementById('greeting').innerHTML = `Welcome, <span class="gold-gradient">${displayName}</span>`;
+        
+        function loadCounts() {
+            const today = new Date().toDateString();
+            const savedDate = localStorage.getItem('adsDate');
+            const savedInterstitial = localStorage.getItem('interstitialCount');
+            const savedPopup = localStorage.getItem('popupCount');
+            const savedTotal = localStorage.getItem('totalAds');
+            
+            if (savedDate === today) {
+                interstitialCount = savedInterstitial ? parseInt(savedInterstitial) : 0;
+                popupCount = savedPopup ? parseInt(savedPopup) : 0;
+                totalAds = savedTotal ? parseInt(savedTotal) : 0;
+            } else {
+                // New day - reset all counters
+                interstitialCount = 0;
+                popupCount = 0;
+                totalAds = 0;
+                localStorage.setItem('adsDate', today);
+                localStorage.setItem('interstitialCount', '0');
+                localStorage.setItem('popupCount', '0');
+                localStorage.setItem('totalAds', '0');
+            }
+            
+            // Validate counts don't exceed max
+            if (totalAds > maxAds) totalAds = maxAds;
+            if (interstitialCount > 55) interstitialCount = 55;
+            if (popupCount > 5) popupCount = 5;
+            
+            updateUI();
+        }
+        
+        function updateUI() {
+            // Update main counter
+            document.getElementById('counter').textContent = totalAds;
+            
+            // Update progress circle
+            const progress = (totalAds / maxAds) * 100;
+            const offset = fullCircumference - (fullCircumference * progress / 100);
+            document.getElementById('progressCircle').style.strokeDashoffset = offset;
+            
+            // Update badges
+            const interstitialLeft = 55 - interstitialCount;
+            const popupLeft = 5 - popupCount;
+            
+            document.getElementById('interstitialBadge').textContent = interstitialLeft + ' left';
+            document.getElementById('popupBadge').textContent = popupLeft + ' left';
+            
+            document.getElementById('interstitialCount').textContent = 'I:' + interstitialCount;
+            document.getElementById('popupCount').textContent = 'P:' + popupCount;
+            
+            // Enable/disable buttons based on limits
+            const btn1 = document.getElementById('watchInterstitialBtn');
+            const btn2 = document.getElementById('watchPopupBtn');
+            
+            if (totalAds >= maxAds) {
+                btn1.disabled = true;
+                btn2.disabled = true;
+                document.getElementById('modal').classList.remove('hidden');
+            } else {
+                // Check individual limits
+                btn1.disabled = (interstitialCount >= 55);
+                btn2.disabled = (popupCount >= 5);
+            }
+        }
+        
+        function incrementCount(type) {
+            if (type === 'interstitial') {
+                interstitialCount++;
+                localStorage.setItem('interstitialCount', interstitialCount.toString());
+            } else if (type === 'popup') {
+                popupCount++;
+                localStorage.setItem('popupCount', popupCount.toString());
+            }
+            
+            totalAds++;
+            localStorage.setItem('totalAds', totalAds.toString());
+            
+            updateUI();
+            
+            // Check for 15s ad modal (after every 3 ads, but not at 60)
+            if (totalAds % 3 === 0 && totalAds < maxAds && totalAds > 0) {
+                showFifteenSecModal();
+            }
+        }
+        
+        function showFifteenSecModal() {
+            if (totalAds >= maxAds) return;
+            document.getElementById('fifteenSecModal').classList.remove('hidden');
+            Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        }
+        
+        function watchFifteenSecAd() {
+            document.getElementById('fifteenSecModal').classList.add('hidden');
+            
+            if (totalAds >= maxAds) {
+                document.getElementById('modal').classList.remove('hidden');
+                return;
+            }
+            
+            if (typeof show_10551429 !== 'function') {
+                alert('Premium ad service is initializing. Please wait a moment.');
+                return;
+            }
+            
+            Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+            
+            // Show interstitial ad (15s version)
+            const adPromise = show_10734218();
+            
+            adPromise
+                .then(() => {
+                    // Determine which type to increment based on what's available
+                    if (interstitialCount < 55) {
+                        incrementCount('interstitial');
+                    } else if (popupCount < 5) {
+                        incrementCount('popup');
+                    }
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+                })
+                .catch((err) => {
+                    console.log('Ad was closed or error:', err);
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+                });
+        }
+        
+        function resetCounter() {
+            // Reset all counters
+            interstitialCount = 0;
+            popupCount = 0;
+            totalAds = 0;
+            
+            localStorage.setItem('interstitialCount', '0');
+            localStorage.setItem('popupCount', '0');
+            localStorage.setItem('totalAds', '0');
+            
+            updateUI();
+            
+            // Hide all modals
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('fifteenSecModal').classList.add('hidden');
+            
+            Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+            
+            // Show success message
+            alert('✅ Counter reset successful!\nIP and data have been cleared.');
+        }
+        
+        function showAd(type) {
+            if (totalAds >= maxAds) {
+                document.getElementById('modal').classList.remove('hidden');
+                return;
+            }
+            
+            // Check individual limits
+            if (type === 'interstitial' && interstitialCount >= 55) {
+                alert('❌ You have reached the maximum interstitial ads (55). Please use popup ads.');
+                return;
+            }
+            if (type === 'popup' && popupCount >= 5) {
+                alert('❌ You have reached the maximum popup ads (5). Please use interstitial ads.');
+                return;
+            }
+            
+            if (typeof show_10551429 !== 'function') {
+                alert('Premium ad service is initializing. Please wait a moment.');
+                return;
+            }
+            
+            Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+            
+            // Track consecutive ads
+            if (lastAdType === type) {
+                consecutiveAds++;
+            } else {
+                consecutiveAds = 1;
+                lastAdType = type;
+            }
+            
+            // Show appropriate ad type
+            const adPromise = type === 'popup' ? show_10734218('pop') : show_10734218();
+            
+            adPromise
+                .then(() => {
+                    incrementCount(type);
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+                })
+                .catch((err) => {
+                    console.log('Ad was closed or error:', err);
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+                });
+        }
+        
+        // Event Listeners
+        document.getElementById('watchInterstitialBtn').onclick = () => showAd('interstitial');
+        document.getElementById('watchPopupBtn').onclick = () => showAd('popup');
+        document.getElementById('resetBtn').onclick = resetCounter;
+        document.getElementById('watchFifteenSecBtn').onclick = watchFifteenSecAd;
+        document.getElementById('skipFifteenSecBtn').onclick = () => {
+            document.getElementById('fifteenSecModal').classList.add('hidden');
+        };
+        
+        // Handle back button
+        Telegram.WebApp.BackButton.onClick(() => {
+            if (!document.getElementById('modal').classList.contains('hidden')) {
+                document.getElementById('modal').classList.add('hidden');
+            }
+            if (!document.getElementById('fifteenSecModal').classList.contains('hidden')) {
+                document.getElementById('fifteenSecModal').classList.add('hidden');
+            }
+        });
+        
+        window.onload = () => {
+            loadCounts();
+            
+            // Fade in animations
+            setTimeout(() => {
+                document.querySelectorAll('.opacity-0').forEach(el => {
+                    el.classList.remove('opacity-0');
+                });
+            }, 100);
+        };
+    </script>
+</body>
+</html>
