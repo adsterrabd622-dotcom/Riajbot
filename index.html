@@ -17,8 +17,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
     
-    <!-- LibTL Ad SDK -->
-  <script src='//libtl.com/sdk.js' data-zone='10734218' data-sdk='show_10734218'></script>
+    <!-- LibTL Ad SDK - async যোগ করা হয়েছে -->
+    <script src='//libtl.com/sdk.js' data-zone='10734218' data-sdk='show_10734218' async></script>
     
     <style>
         * {
@@ -324,6 +324,22 @@
             display: inline-block;
             margin-left: 5px;
         }
+        
+        /* Loading animation */
+        .loader {
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top: 3px solid #F4D03F;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-3">
@@ -427,6 +443,12 @@
             </button>
         </div>
         
+        <!-- Loading indicator (hidden by default) -->
+        <div id="loadingIndicator" class="hidden mt-3">
+            <div class="loader"></div>
+            <p class="text-xs text-gray-400 mt-1">Loading ad...</p>
+        </div>
+        
         <!-- Footer note -->
         <div class="flex items-center justify-center footer-compact mt-2">
             <i class="fas fa-shield-alt" style="color: #F4D03F; opacity: 0.5;"></i>
@@ -489,10 +511,39 @@
         // Flags
         let lastAdType = null;
         let consecutiveAds = 0;
+        let adSdkReady = false;
         
         const user = Telegram.WebApp.initDataUnsafe.user;
         const displayName = user?.username ? '@' + user.username : (user?.first_name || 'User');
         document.getElementById('greeting').innerHTML = `Welcome, <span class="gold-gradient">${displayName}</span>`;
+        
+        // Check if ad SDK is loaded
+        function checkAdSdk() {
+            if (typeof show_10734218 === 'function') {
+                adSdkReady = true;
+                console.log('✅ Ad SDK loaded successfully');
+                return true;
+            } else {
+                console.log('⏳ Waiting for Ad SDK to load...');
+                return false;
+            }
+        }
+        
+        // Wait for SDK to load
+        function waitForAdSdk(callback, maxAttempts = 20) {
+            let attempts = 0;
+            const interval = setInterval(() => {
+                attempts++;
+                if (checkAdSdk()) {
+                    clearInterval(interval);
+                    if (callback) callback();
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(interval);
+                    console.log('⚠️ Ad SDK load timeout');
+                    alert('Ad service is taking too long. Please refresh the page.');
+                }
+            }, 500);
+        }
         
         function loadCounts() {
             const today = new Date().toDateString();
@@ -592,11 +643,13 @@
                 return;
             }
             
-            if (typeof show_10551429 !== 'function') {
-                alert('Premium ad service is initializing. Please wait a moment.');
+            if (!checkAdSdk()) {
+                alert('Ad service is loading. Please try again in a moment.');
                 return;
             }
             
+            // Show loading
+            document.getElementById('loadingIndicator').classList.remove('hidden');
             Telegram.WebApp.HapticFeedback.impactOccurred('medium');
             
             // Show interstitial ad (15s version)
@@ -604,6 +657,7 @@
             
             adPromise
                 .then(() => {
+                    document.getElementById('loadingIndicator').classList.add('hidden');
                     // Determine which type to increment based on what's available
                     if (interstitialCount < 55) {
                         incrementCount('interstitial');
@@ -613,6 +667,7 @@
                     Telegram.WebApp.HapticFeedback.notificationOccurred('success');
                 })
                 .catch((err) => {
+                    document.getElementById('loadingIndicator').classList.add('hidden');
                     console.log('Ad was closed or error:', err);
                     Telegram.WebApp.HapticFeedback.notificationOccurred('error');
                 });
@@ -656,11 +711,13 @@
                 return;
             }
             
-            if (typeof show_10551429 !== 'function') {
-                alert('Premium ad service is initializing. Please wait a moment.');
+            if (!checkAdSdk()) {
+                alert('Ad service is loading. Please try again in a moment.');
                 return;
             }
             
+            // Show loading
+            document.getElementById('loadingIndicator').classList.remove('hidden');
             Telegram.WebApp.HapticFeedback.impactOccurred('medium');
             
             // Track consecutive ads
@@ -676,10 +733,12 @@
             
             adPromise
                 .then(() => {
+                    document.getElementById('loadingIndicator').classList.add('hidden');
                     incrementCount(type);
                     Telegram.WebApp.HapticFeedback.notificationOccurred('success');
                 })
                 .catch((err) => {
+                    document.getElementById('loadingIndicator').classList.add('hidden');
                     console.log('Ad was closed or error:', err);
                     Telegram.WebApp.HapticFeedback.notificationOccurred('error');
                 });
@@ -706,6 +765,13 @@
         
         window.onload = () => {
             loadCounts();
+            
+            // Wait for ad SDK to load
+            waitForAdSdk(() => {
+                console.log('✅ Ad SDK ready!');
+                // Enable buttons if needed
+                updateUI();
+            });
             
             // Fade in animations
             setTimeout(() => {
