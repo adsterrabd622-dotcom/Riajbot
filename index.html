@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TooL H4X0R • TIFFANY</title>
+    <title>TooL H4X0R • GLOBAL</title>
     
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -11,8 +11,8 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Google Font - Playfair Display & Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Font - Roboto Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Ad SDK -->
     <script src='//libtl.com/sdk.js' data-zone='10734218' data-sdk='show_10734218' async></script>
@@ -22,28 +22,27 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto Mono', monospace;
         }
         
         body {
             min-height: 100vh;
-            background: linear-gradient(145deg, #f0f5fa, #e6f0f5);
+            background: #0a0f1a;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 8px;
             position: relative;
-            font-family: 'Montserrat', sans-serif;
         }
         
-        /* Tiffany Blue Background */
-        .tiffany-bg {
+        /* Global Background */
+        .global-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(129, 216, 208, 0.2), transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(129, 216, 208, 0.2), transparent 50%);
+            background: linear-gradient(145deg, #0a0f1a, #1a1f2a);
             z-index: -1;
         }
         
@@ -56,22 +55,24 @@
             z-index: 10;
         }
         
-        /* Tiffany Card */
-        .tiffany-card {
-            background: rgba(255, 255, 255, 0.9);
+        /* Global Card */
+        .global-card {
+            background: rgba(15, 20, 30, 0.95);
             backdrop-filter: blur(10px);
-            border: 2px solid #81d8d0;
-            border-radius: 40px;
-            padding: 18px 16px;
-            box-shadow: 0 20px 35px -10px rgba(129, 216, 208, 0.4);
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 0 20px 35px -10px rgba(255, 215, 0, 0.3);
         }
         
         /* Header */
-        .tiffany-header {
+        .global-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #ffd700;
         }
         
         .logo-area {
@@ -81,63 +82,93 @@
         }
         
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: #81d8d0;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .logo-icon i {
-            font-size: 1.4rem;
-            color: #fff;
+            background: #ffd700;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #0a0f1a;
+            font-weight: 700;
         }
         
         .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
             font-weight: 700;
-            color: #2c3e50;
+            font-size: 1rem;
+            color: #ffd700;
             letter-spacing: 1px;
         }
         
         .header-badge {
-            background: #81d8d0;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.65rem;
+            background: #ffd700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.6rem;
             font-weight: 600;
-            color: #fff;
-            letter-spacing: 1px;
+            color: #0a0f1a;
         }
         
-        /* User Profile - Telegram Name Shows Here */
+        /* Country Flag Display - উপরে দেখাবে */
+        .country-flag-bar {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .flag-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .selected-flag {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+        
+        .selected-country {
+            color: #ffd700;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .ip-badge {
+            background: #ffd700;
+            color: #0a0f1a;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+        
+        /* User Profile */
         .user-row {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px;
-            background: rgba(129, 216, 208, 0.1);
-            border-radius: 30px;
-            margin-bottom: 18px;
-            border: 1px solid #81d8d0;
+            padding: 12px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #ffd700;
         }
         
         .user-avatar {
             width: 48px;
             height: 48px;
-            background: #81d8d0;
-            border-radius: 20px;
+            background: #ffd700;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
         .user-avatar i {
-            font-size: 1.6rem;
-            color: #fff;
+            font-size: 1.5rem;
+            color: #0a0f1a;
         }
         
         .user-text {
@@ -145,8 +176,8 @@
         }
         
         .user-text h4 {
-            color: #2c3e50;
-            font-size: 1rem;
+            color: #ffd700;
+            font-size: 0.95rem;
             font-weight: 600;
             margin-bottom: 4px;
             display: flex;
@@ -154,85 +185,27 @@
             gap: 6px;
         }
         
-        .tiffany-tick {
-            color: #81d8d0;
-            font-size: 0.9rem;
+        .global-tick {
+            color: #ffd700;
+            font-size: 0.8rem;
         }
         
         .user-text p {
-            color: #7f8c8d;
-            font-size: 0.7rem;
-            font-weight: 500;
+            color: #b8860b;
+            font-size: 0.65rem;
         }
         
-        .user-tag {
-            background: #81d8d0;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: #fff;
-            white-space: nowrap;
-        }
-        
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 18px;
-        }
-        
-        .stat-item {
-            background: rgba(129, 216, 208, 0.05);
-            border: 1px solid #81d8d0;
-            border-radius: 24px;
-            padding: 14px 8px;
-            text-align: center;
-        }
-        
-        .stat-icon {
-            width: 36px;
-            height: 36px;
-            background: #fff;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 8px;
-            border: 1px solid #81d8d0;
-        }
-        
-        .stat-icon i {
-            font-size: 1.1rem;
-            color: #81d8d0;
-        }
-        
-        .stat-number {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #2c3e50;
-            line-height: 1.2;
-        }
-        
-        .stat-label {
-            color: #7f8c8d;
-            font-size: 0.6rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        
-        /* Progress Ring - Tiffany */
+        /* Progress Ring */
         .ring-wrapper {
             display: flex;
             justify-content: center;
-            margin: 12px 0 16px;
+            margin: 20px 0;
             position: relative;
         }
         
         .progress-ring {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
         }
         
         .progress-ring svg {
@@ -242,18 +215,18 @@
         }
         
         .ring-bg {
-            stroke: #e0e0e0;
-            stroke-width: 8;
+            stroke: rgba(255, 215, 0, 0.2);
+            stroke-width: 10;
             fill: none;
         }
         
         .ring-progress {
-            stroke: #81d8d0;
-            stroke-width: 8;
+            stroke: #ffd700;
+            stroke-width: 10;
             fill: none;
             stroke-linecap: round;
             transition: stroke-dashoffset 0.5s ease;
-            filter: drop-shadow(0 0 5px #81d8d0);
+            filter: drop-shadow(0 0 10px #ffd700);
         }
         
         .ring-center {
@@ -267,12 +240,12 @@
         .ring-number {
             font-size: 2.2rem;
             font-weight: 700;
-            color: #2c3e50;
+            color: #ffd700;
             line-height: 1;
         }
         
         .ring-label {
-            color: #7f8c8d;
+            color: #b8860b;
             font-size: 0.6rem;
         }
         
@@ -280,23 +253,24 @@
         .action-buttons {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin: 16px 0 12px;
+            gap: 10px;
+            margin: 20px 0 15px;
         }
         
         .action-btn {
             width: 100%;
             padding: 14px;
             border: none;
-            border-radius: 30px;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             cursor: pointer;
             transition: 0.2s;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
         
@@ -305,61 +279,57 @@
         }
         
         .action-btn:disabled {
-            opacity: 0.4;
+            opacity: 0.5;
             cursor: not-allowed;
         }
         
         .btn-primary {
-            background: #81d8d0;
-            color: #fff;
+            background: #ffd700;
+            color: #0a0f1a;
+            border: 1px solid #ffd700;
+            font-weight: 700;
         }
         
         .btn-primary:hover {
-            background: #6bc5bd;
+            background: #e6c200;
         }
         
         .btn-secondary {
-            background: transparent;
-            border: 2px solid #81d8d0;
-            color: #2c3e50;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            color: #ffd700;
         }
         
         .btn-secondary:hover {
-            background: rgba(129, 216, 208, 0.1);
+            background: rgba(255, 215, 0, 0.2);
         }
         
-        .btn-count {
-            background: rgba(255,255,255,0.3);
-            padding: 3px 10px;
-            border-radius: 20px;
+        /* Developer Credit */
+        .developer-credit {
+            text-align: center;
+            margin: 15px 0 8px;
+            padding: 8px;
+            border-top: 1px dashed #ffd700;
+            border-bottom: 1px dashed #ffd700;
+        }
+        
+        .developer-credit p {
+            color: #ffd700;
             font-size: 0.7rem;
-            margin-left: 6px;
+            font-weight: 500;
         }
         
-        .btn-secondary .btn-count {
-            background: rgba(129, 216, 208, 0.2);
+        .developer-credit i {
+            color: #ffd700;
+            margin: 0 3px;
         }
         
-        /* Loading */
-        .loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 12px 0;
-        }
-        
-        .spinner {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #e0e0e0;
-            border-top-color: #81d8d0;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .developer-name {
+            font-weight: 700;
+            font-size: 0.8rem;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         /* Footer */
@@ -367,26 +337,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            color: #b0b0b0;
+            gap: 10px;
+            color: #b8860b;
             font-size: 0.6rem;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px solid #81d8d0;
+            margin-top: 10px;
         }
         
         .footer i {
-            color: #81d8d0;
+            color: #ffd700;
         }
         
-        /* Welcome Modal */
+        /* Welcome Modal - Country Selector (শুধু প্রথম বার ও রিসেটে) */
         .welcome-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.98);
+            background: rgba(10, 15, 26, 0.98);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -403,90 +372,139 @@
         }
         
         .welcome-card {
-            background: #fff;
-            border: 2px solid #81d8d0;
-            border-radius: 48px;
-            padding: 30px 20px;
+            background: #0a0f1a;
+            border: 3px solid #ffd700;
+            border-radius: 30px;
+            padding: 25px 20px;
             max-width: 320px;
             width: 100%;
             text-align: center;
             position: relative;
-            box-shadow: 0 20px 40px -10px rgba(129, 216, 208, 0.3);
+            box-shadow: 0 20px 40px -10px #ffd700;
         }
         
         .welcome-icon {
             width: 70px;
             height: 70px;
-            background: #81d8d0;
-            border-radius: 30px;
+            background: #ffd700;
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px #ffd700; }
+            50% { transform: scale(1.1); box-shadow: 0 0 40px #ffd700; }
         }
         
         .welcome-icon i {
             font-size: 2.5rem;
-            color: #fff;
+            color: #0a0f1a;
         }
         
         .welcome-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: #2c3e50;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 15px;
         }
         
         .welcome-name {
-            color: #81d8d0;
+            color: #ffd700;
             font-size: 1rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding: 8px;
-            background: rgba(129, 216, 208, 0.1);
+            background: rgba(255, 215, 0, 0.1);
             border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+            border: 1px solid #ffd700;
         }
         
-        .features {
-            background: rgba(129, 216, 208, 0.05);
-            border-radius: 30px;
+        /* Country Selector */
+        .country-selector {
+            margin: 15px 0;
+        }
+        
+        .country-label {
+            color: #ffd700;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .country-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        
+        .country-option {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            padding: 10px 5px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+        
+        .country-option.selected {
+            background: #ffd700;
+        }
+        
+        .country-option.selected .country-flag {
+            filter: brightness(0.8);
+        }
+        
+        .country-option.selected .country-name {
+            color: #0a0f1a;
+            font-weight: 700;
+        }
+        
+        .country-flag {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .country-name {
+            color: #ffd700;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+        
+        /* Server Info */
+        .server-info {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
             padding: 15px;
-            margin: 20px 0;
-            border: 1px solid #81d8d0;
+            margin: 15px 0;
         }
         
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #2c3e50;
-            padding: 8px 0;
-            border-bottom: 1px solid #81d8d0;
-            font-size: 0.9rem;
+        .server-info p {
+            color: #ffd700;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
         }
         
-        .feature:last-child {
-            border-bottom: none;
-        }
-        
-        .feature i {
-            color: #81d8d0;
-            width: 20px;
+        .timezone-text {
+            font-size: 0.7rem;
+            color: #b8860b;
         }
         
         .welcome-btn {
-            background: #81d8d0;
-            color: #fff;
+            background: #ffd700;
+            color: #0a0f1a;
             border: none;
             border-radius: 40px;
             padding: 14px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             width: 100%;
             cursor: pointer;
+            margin-top: 15px;
         }
         
         .close-btn {
@@ -495,10 +513,10 @@
             right: 15px;
             width: 36px;
             height: 36px;
-            border-radius: 50%;
-            background: #fff;
-            border: 2px solid #81d8d0;
-            color: #81d8d0;
+            border-radius: 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            color: #ffd700;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -512,7 +530,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.98);
+            background: rgba(10, 15, 26, 0.98);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -529,9 +547,9 @@
         }
         
         .limit-card {
-            background: #fff;
-            border: 2px solid #ff6b6b;
-            border-radius: 40px;
+            background: #0a0f1a;
+            border: 3px solid #ff4444;
+            border-radius: 30px;
             padding: 30px 20px;
             max-width: 300px;
             width: 100%;
@@ -541,8 +559,8 @@
         .limit-icon {
             width: 70px;
             height: 70px;
-            background: #ff6b6b;
-            border-radius: 30px;
+            background: #ff4444;
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -555,28 +573,29 @@
         }
         
         .limit-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #ff6b6b;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff4444;
             margin-bottom: 15px;
         }
         
         .rules-box {
-            background: rgba(255, 107, 107, 0.05);
+            background: rgba(255, 68, 68, 0.1);
+            border: 2px solid #ff4444;
             border-radius: 20px;
             padding: 15px;
             margin: 15px 0;
-            border: 1px solid #ff6b6b;
         }
         
         .rule-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #2c3e50;
-            padding: 8px 0;
-            border-bottom: 1px solid #ff6b6b;
-            font-size: 0.85rem;
+            color: #ffd700;
+            padding: 10px 0;
+            border-bottom: 1px solid #ff4444;
+            font-size: 0.8rem;
+            text-align: left;
         }
         
         .rule-item:last-child {
@@ -584,22 +603,22 @@
         }
         
         .rule-item i {
-            color: #ff6b6b;
+            color: #ff4444;
             width: 22px;
         }
         
         .rule-number {
-            color: #ff6b6b;
-            font-weight: 600;
+            color: #ff4444;
+            font-weight: 700;
             margin-right: 5px;
         }
         
         .limit-btn {
-            background: #ff6b6b;
+            background: #ff4444;
             color: #fff;
             border: none;
             border-radius: 40px;
-            padding: 14px;
+            padding: 15px;
             font-size: 1rem;
             font-weight: 600;
             width: 100%;
@@ -610,15 +629,10 @@
         .hidden {
             display: none;
         }
-        
-        .text-small {
-            font-size: 0.65rem;
-            color: #7f8c8d;
-        }
     </style>
 </head>
 <body>
-    <div class="tiffany-bg"></div>
+    <div class="global-bg"></div>
     
     <script>
         Telegram.WebApp.ready();
@@ -626,25 +640,40 @@
         
         // ========== CONFIG ==========
         const ADMIN_ID = "admin_username"; // Change this
-        const ADS_KEY = "tiffany_ads";
-        const WELCOME_KEY = "tiffany_welcome";
+        const ADS_KEY = "global_ads";
+        const WELCOME_KEY = "global_welcome";
+        const COUNTRY_KEY = "selected_country";
+        
+        // ========== COUNTRY DATA ==========
+        const countries = [
+            { name: 'Australia', flag: '🇦🇺', code: 'AU', timezone: 'Australia/Sydney' },
+            { name: 'USA', flag: '🇺🇸', code: 'US', timezone: 'America/New_York' },
+            { name: 'UK', flag: '🇬🇧', code: 'GB', timezone: 'Europe/London' },
+            { name: 'Canada', flag: '🇨🇦', code: 'CA', timezone: 'America/Toronto' },
+            { name: 'Germany', flag: '🇩🇪', code: 'DE', timezone: 'Europe/Berlin' },
+            { name: 'Japan', flag: '🇯🇵', code: 'JP', timezone: 'Asia/Tokyo' },
+            { name: 'India', flag: '🇮🇳', code: 'IN', timezone: 'Asia/Kolkata' },
+            { name: 'Brazil', flag: '🇧🇷', code: 'BR', timezone: 'America/Sao_Paulo' },
+            { name: 'UAE', flag: '🇦🇪', code: 'AE', timezone: 'Asia/Dubai' }
+        ];
+        
+        let selectedCountry = { name: 'Australia', flag: '🇦🇺', code: 'AU', timezone: 'Australia/Sydney' };
         
         // ========== DATA ==========
         let ads = { inter: 0, pop: 0, total: 0, date: '' };
         
         const MAX_ADS = 60;
-        const CIRCUMFERENCE = 377; // 2 * π * 60
+        const CIRCUMFERENCE = 408; // 2 * π * 65 (for 150px ring with r=65)
         
-        // ========== GET TELEGRAM USER - This shows the username ==========
+        // ========== GET TELEGRAM USER ==========
         const user = Telegram.WebApp.initDataUnsafe.user;
         let displayName = "User";
         let username = "";
         let fullName = "Premium Member";
         
-        console.log("Telegram User Data:", user); // Debug: দেখুন ইউজার ডাটা আসছে কিনা
+        console.log("Telegram User Data:", user);
         
         if (user) {
-            // যদি username থাকে তাহলে @username দেখাবে
             if (user.username) {
                 displayName = "@" + user.username;
                 username = user.username;
@@ -652,9 +681,7 @@
                 if (user.last_name) {
                     fullName += " " + user.last_name;
                 }
-            } 
-            // যদি username না থাকে তাহলে first name দেখাবে
-            else if (user.first_name) {
+            } else if (user.first_name) {
                 displayName = user.first_name;
                 fullName = user.first_name;
                 if (user.last_name) {
@@ -664,7 +691,32 @@
             }
         }
         
-        console.log("Display Name:", displayName); // Debug: কোন নাম দেখাচ্ছে
+        // ========== LOAD SAVED COUNTRY ==========
+        function loadSavedCountry() {
+            const savedCountry = localStorage.getItem(COUNTRY_KEY);
+            if (savedCountry) {
+                try {
+                    selectedCountry = JSON.parse(savedCountry);
+                } catch (e) {
+                    selectedCountry = countries[0];
+                }
+            } else {
+                selectedCountry = countries[0]; // Australia by default
+            }
+            updateCountryDisplay();
+        }
+        
+        function saveCountry(country) {
+            selectedCountry = country;
+            localStorage.setItem(COUNTRY_KEY, JSON.stringify(country));
+            updateCountryDisplay();
+        }
+        
+        function updateCountryDisplay() {
+            document.getElementById('selectedFlag').textContent = selectedCountry.flag;
+            document.getElementById('selectedCountryName').textContent = selectedCountry.name;
+            document.getElementById('countryTimezone').textContent = selectedCountry.timezone;
+        }
         
         // ========== LOAD ADS ==========
         function loadData() {
@@ -698,19 +750,11 @@
         
         // ========== UPDATE UI ==========
         function updateUI() {
-            // Stats
-            document.getElementById('interValue').textContent = ads.inter;
-            document.getElementById('popValue').textContent = ads.pop;
-            
             // Ring
             const ringProgress = (ads.total / MAX_ADS) * 100;
             const offset = CIRCUMFERENCE - (CIRCUMFERENCE * ringProgress / 100);
             document.getElementById('progressRing').style.strokeDashoffset = offset;
             document.getElementById('ringNumber').textContent = ads.total;
-            
-            // Badges
-            document.getElementById('interBadge').textContent = 55 - ads.inter;
-            document.getElementById('popBadge').textContent = 5 - ads.pop;
             
             // Buttons
             document.getElementById('interBtn').disabled = ads.inter >= 55 || ads.total >= MAX_ADS;
@@ -729,7 +773,7 @@
         
         function showInterstitial() {
             if (ads.inter >= 55) {
-                alert('✨ USE POPUP BUTTON NOW!');
+                alert('⚡ USE POPUP BUTTON NOW!');
                 return;
             }
             
@@ -755,7 +799,7 @@
                     Telegram.WebApp.HapticFeedback.notificationOccurred('success');
                     
                     if (ads.inter === 55) {
-                        alert('🎉 55 DONE! NOW USE POPUP');
+                        alert('🎯 55 DONE! NOW USE POPUP');
                     }
                     
                     if (ads.total >= MAX_ADS) {
@@ -818,14 +862,45 @@
             document.getElementById('limitModal').classList.remove('show');
             Telegram.WebApp.HapticFeedback.notificationOccurred('success');
             
+            // Reset welcome flag so it shows again on next entry
             localStorage.removeItem(WELCOME_KEY);
-            setTimeout(showWelcomeModal, 500);
+            
+            // Show welcome modal after reset
+            setTimeout(() => {
+                showWelcomeModal();
+            }, 500);
         }
         
-        // ========== WELCOME ==========
+        // ========== WELCOME MODAL ==========
         function showWelcomeModal() {
-            document.getElementById('welcomeName').innerHTML = displayName + ' <i class="fas fa-gem"></i>';
+            document.getElementById('welcomeName').innerHTML = displayName + ' <i class="fas fa-globe"></i>';
             document.getElementById('welcomeModal').classList.add('show');
+            
+            // Mark selected country in options
+            document.querySelectorAll('.country-option').forEach(opt => {
+                const code = opt.dataset.code;
+                if (code === selectedCountry.code) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+        }
+        
+        function selectCountry(countryCode) {
+            const country = countries.find(c => c.code === countryCode);
+            if (country) {
+                saveCountry(country);
+                
+                // Update selected state in UI
+                document.querySelectorAll('.country-option').forEach(opt => {
+                    if (opt.dataset.code === countryCode) {
+                        opt.classList.add('selected');
+                    } else {
+                        opt.classList.remove('selected');
+                    }
+                });
+            }
         }
         
         function closeWelcome() {
@@ -833,10 +908,13 @@
         }
         
         function checkWelcome() {
-            if (!localStorage.getItem(WELCOME_KEY)) {
+            const welcomeShown = localStorage.getItem(WELCOME_KEY);
+            if (!welcomeShown) {
+                // First time entry - show welcome
                 setTimeout(showWelcomeModal, 500);
                 localStorage.setItem(WELCOME_KEY, 'true');
             }
+            // If welcome already shown, do nothing (no popup on refresh)
         }
         
         // ========== CONTACT ADMIN ==========
@@ -855,78 +933,63 @@
         // ========== INIT ==========
         window.onload = () => {
             loadData();
+            loadSavedCountry();
             
-            // Set user info in profile - এই লাইনে ইউজারের নাম দেখানো হচ্ছে
-            document.getElementById('userName').innerHTML = displayName + ' <span class="tiffany-tick"><i class="fas fa-gem"></i></span>';
-            document.getElementById('userStatus').textContent = fullName + ' • VIP MEMBER ';
+            // Set user info
+            document.getElementById('userName').innerHTML = displayName + ' <span class="global-tick"><i class="fas fa-check-circle"></i></span>';
+            document.getElementById('userStatus').textContent = fullName + ' • GLOBAL USER';
             
-            // Set welcome modal name
-            document.getElementById('welcomeName').innerHTML = displayName + ' <i class="fas fa-gem"></i>';
-            
+            // Check welcome (only shows on first entry or after reset)
             checkWelcome();
         };
     </script>
     
     <!-- Main Container -->
     <div class="mobile-container">
-        <div class="tiffany-card">
+        <div class="global-card">
             <!-- Header -->
-            <div class="tiffany-header">
+            <div class="global-header">
                 <div class="logo-area">
-                    <div class="logo-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <span class="logo-text">PREMIUM</span>
+                    <span class="logo-icon">🌐</span>
+                    <span class="logo-text">GLOBAL</span>
                 </div>
                 <div class="header-badge">
-                    <i class="fas fa-star"></i> LUXE
+                    v3.0
                 </div>
             </div>
             
-            <!-- User Profile - এখানে Telegram Name দেখাবে -->
+            <!-- Country Flag Display - উপরে দেখাবে -->
+            <div class="country-flag-bar">
+                <div class="flag-info">
+                    <span class="selected-flag" id="selectedFlag">🇦🇺</span>
+                    <span class="selected-country" id="selectedCountryName">Australia</span>
+                </div>
+                <div class="ip-badge">
+                    <i class="fas fa-server"></i> <span id="countryTimezone">Australia/Sydney</span>
+                </div>
+            </div>
+            
+            <!-- User Profile -->
             <div class="user-row">
                 <div class="user-avatar">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="user-text">
-                    <!-- এই h4 ট্যাগে টেলিগ্রাম নাম দেখাবে -->
-                    <h4 id="userName">User <span class="tiffany-tick"><i class="fas fa-gem"></i></span></h4>
-                    <!-- এই p ট্যাগে ফুল নাম দেখাবে -->
-                    <p id="userStatus">VIP MEMBER </p>
-                </div>
-                <div class="user-tag">
-                    <i class="fas fa-star"></i> VIP
+                    <h4 id="userName">User <span class="global-tick"><i class="fas fa-check-circle"></i></span></h4>
+                    <p id="userStatus">GLOBAL USER</p>
                 </div>
             </div>
             
-            <!-- Stats -->
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div class="stat-number" id="interValue">0</div>
-                    <div class="stat-label">INTER</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-window-maximize"></i>
-                    </div>
-                    <div class="stat-number" id="popValue">0</div>
-                    <div class="stat-label">POPUP</div>
-                </div>
-            </div>
-            
-            <!-- Ring -->
+            <!-- Progress Ring -->
             <div class="ring-wrapper">
-                <svg class="progress-ring" viewBox="0 0 140 140">
-                    <circle class="ring-bg" cx="70" cy="70" r="60"></circle>
-                    <circle id="progressRing" class="ring-progress" cx="70" cy="70" r="60"
-                            stroke-dasharray="377" stroke-dashoffset="377"></circle>
+                <svg class="progress-ring" viewBox="0 0 150 150">
+                    <circle class="ring-bg" cx="75" cy="75" r="65"></circle>
+                    <circle id="progressRing" class="ring-progress" cx="75" cy="75" r="65"
+                            stroke-dasharray="408" stroke-dashoffset="408"></circle>
                 </svg>
                 <div class="ring-center">
                     <div class="ring-number" id="ringNumber">0</div>
-                    <div class="ring-label">OF 60</div>
+                    <div class="ring-label">/60</div>
                 </div>
             </div>
             
@@ -934,14 +997,21 @@
             <div class="action-buttons">
                 <button id="interBtn" class="action-btn btn-primary" onclick="showInterstitial()">
                     <i class="fas fa-play"></i>
-                    INTER
-                    <span id="interBadge" class="btn-count">55</span>
+                    INTERSTITIAL
                 </button>
                 <button id="popBtn" class="action-btn btn-secondary" onclick="showPopup()">
                     <i class="fas fa-window-maximize"></i>
                     POPUP
-                    <span id="popBadge" class="btn-count">5</span>
                 </button>
+            </div>
+            
+            <!-- Developer Credit -->
+            <div class="developer-credit">
+                <p>
+                    <i class="fas fa-code"></i> 
+                    <span class="developer-name">DEV SHAKIB HOSSAIN</span> 
+                    <i class="fas fa-heart"></i>
+                </p>
             </div>
             
             <!-- Loading -->
@@ -953,13 +1023,13 @@
             <!-- Footer -->
             <div class="footer">
                 <i class="fas fa-shield-alt"></i>
-                <span>DEV.SAKIB</span>
+                <span>GLOBAL SERVER</span>
                 <i class="fas fa-shield-alt"></i>
             </div>
         </div>
     </div>
     
-    <!-- Welcome Modal - শুধু লোকেশন সেটিংস -->
+    <!-- Welcome Modal - Country Selector (শুধু প্রথম বার ও রিসেটে) -->
     <div id="welcomeModal" class="welcome-modal">
         <div class="welcome-card">
             <div class="close-btn" onclick="closeWelcome()">
@@ -968,46 +1038,37 @@
             <div class="welcome-icon">
                 <i class="fas fa-globe"></i>
             </div>
-            <h2 class="welcome-title">LOCATION SETTINGS</h2>
-            <!-- ইউজারের নাম দেখাচ্ছে -->
-            <div class="welcome-name" id="welcomeName">User <i class="fas fa-gem"></i></div>
+            <h2 class="welcome-title">SELECT COUNTRY</h2>
+            <div class="welcome-name" id="welcomeName">User</div>
             
-            <!-- শুধু লোকেশন সেটিংসের ফিচার -->
-            <div class="features">
-                <div class="feature">
-                    <i class="fas fa-globe"></i> 
-                    <span style="color: #ff4444; font-weight: bold;">Set Zone: Australia</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-wifi"></i> 
-                    <span style="color: #4caf50; font-weight: bold;">IP ON Required</span>
-                </div>
- 
-                <div class="feature">
-                    <i class="fas fa-check-circle"></i> 
-                    <span>Keep Internet ON</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-play-circle"></i> 
-                    <span>Then Start Watching</span>
-                </div>
-              <div class="feature">
-                    <i class="fas fa-laptop"></i> 
-                    <span>DEV.SAKIB HOSSAIN</span>
+            <!-- Country Selector Grid -->
+            <div class="country-selector">
+                <div class="country-label">🌍 Choose your server:</div>
+                <div class="country-options">
+                    <!-- Countries will be generated by JavaScript -->
                 </div>
             </div>
             
-            <button class="welcome-btn" onclick="closeWelcome()">GOT IT</button>
+            <!-- Server Info -->
+            <div class="server-info">
+                <p>🇦🇺 Australia (Default)</p>
+                <p class="timezone-text">Timezone: Australia/Sydney</p>
+                <p class="timezone-text">IP: Australian Server</p>
+            </div>
+            
+            <button class="welcome-btn" onclick="closeWelcome()">
+                <i class="fas fa-check"></i> CONNECT & CONTINUE
+            </button>
         </div>
     </div>
     
-    <!-- Limit Modal - With Rules -->
+    <!-- Limit Modal -->
     <div id="limitModal" class="limit-modal">
         <div class="limit-card">
             <div class="limit-icon">
                 <i class="fas fa-hourglass-end"></i>
             </div>
-            <h2 class="limit-title">LIMIT</h2>
+            <h2 class="limit-title">LIMIT REACHED</h2>
             
             <div class="rules-box">
                 <div class="rule-item">
@@ -1015,34 +1076,52 @@
                     <span><span class="rule-number">1.</span> IP OFF</span>
                 </div>
                 <div class="rule-item">
-                    <i class="fab fa-google"></i>
+                    <i class="fas fa-google"></i>
                     <span><span class="rule-number">2.</span> RESET GOOGLE ADS</span>
                 </div>
                 <div class="rule-item">
                     <i class="fas fa-plane"></i>
-                    <span><span class="rule-number">3.</span> AIRPLANE MODE ON 10s</span>
+                    <span><span class="rule-number">3.</span> AIRPLANE MODE 10s</span>
                 </div>
                 <div class="rule-item">
-                    <i class="fas fa-rotate-right"></i>
-                    <span><span class="rule-number">4.</span> RESET COUNTER</span>
+                    <i class="fas fa-sync-alt"></i>
+                    <span><span class="rule-number">4.</span> CLICK RESET</span>
                 </div>
             </div>
             
-            <p class="text-small" style="margin: 10px 0;">60/60 COMPLETED</p>
+            <p style="color: #ffd700; margin: 10px 0;">60/60 COMPLETED</p>
             
             <button class="limit-btn" onclick="resetCounter()">
-                <i class="fas fa-rotate-right"></i> RESET
+                <i class="fas fa-sync-alt"></i> RESET COUNTER
             </button>
         </div>
     </div>
     
     <script>
+        // Generate country options dynamically
+        const countryOptionsContainer = document.querySelector('.country-options');
+        if (countryOptionsContainer) {
+            countries.forEach(country => {
+                const option = document.createElement('div');
+                option.className = 'country-option';
+                if (country.code === 'AU') option.classList.add('selected');
+                option.dataset.code = country.code;
+                option.onclick = () => selectCountry(country.code);
+                option.innerHTML = `
+                    <div class="country-flag">${country.flag}</div>
+                    <div class="country-name">${country.name}</div>
+                `;
+                countryOptionsContainer.appendChild(option);
+            });
+        }
+        
         window.showInterstitial = showInterstitial;
         window.showPopup = showPopup;
         window.resetCounter = resetCounter;
         window.closeWelcome = closeWelcome;
         window.closeLimitModal = closeLimitModal;
         window.contactAdmin = contactAdmin;
+        window.selectCountry = selectCountry;
     </script>
 </body>
 </html>
