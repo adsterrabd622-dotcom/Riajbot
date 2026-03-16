@@ -3,783 +3,1024 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TooL H4X0R v3</title>
+    <title>TooL H4X0R • MARSALA</title>
     
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Font - Lora & Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- LibTL Ad SDK - async যোগ করা হয়েছে -->
+    <!-- Ad SDK -->
     <script src='//libtl.com/sdk.js' data-zone='10734218' data-sdk='show_10734218' async></script>
     
     <style>
         * {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             min-height: 100vh;
-            background: linear-gradient(145deg, #0A1828 0%, #1A2B3C 100%);
+            background: linear-gradient(145deg, #f5e6d3, #f0d9c6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
             position: relative;
+            font-family: 'Nunito', sans-serif;
         }
         
-        .bg-pattern {
+        /* Marsala Background */
+        .marsala-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.03) 0%, transparent 30%),
-                              radial-gradient(circle at 70% 60%, rgba(212, 175, 55, 0.03) 0%, transparent 40%),
-                              repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.02) 0px, rgba(212, 175, 55, 0.02) 2px, transparent 2px, transparent 10px);
-            pointer-events: none;
-            z-index: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(150, 75, 70, 0.08), transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(150, 75, 70, 0.08), transparent 50%);
+            z-index: -1;
         }
         
-        .orb {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.15), rgba(10, 24, 40, 0));
-            top: -200px;
-            right: -200px;
-            filter: blur(60px);
-            z-index: 0;
-            animation: float-orb 20s infinite alternate ease-in-out;
-        }
-        
-        .orb-2 {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 70% 70%, rgba(10, 24, 40, 0.3), rgba(212, 175, 55, 0.1));
-            bottom: -250px;
-            left: -250px;
-            filter: blur(80px);
-            z-index: 0;
-            animation: float-orb-2 25s infinite alternate ease-in-out;
-        }
-        
-        @keyframes float-orb {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.2); }
-        }
-        
-        @keyframes float-orb-2 {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-50px, -30px) scale(1.3); }
-        }
-        
-        .card {
-            background: rgba(20, 35, 50, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5), 
-                        0 0 0 1px rgba(212, 175, 55, 0.1) inset,
-                        0 0 30px rgba(212, 175, 55, 0.1);
-            max-width: 400px;
-            width: 95%;
-            border-radius: 36px;
+        /* Main Container */
+        .mobile-container {
+            max-width: 360px;
+            width: 100%;
+            margin: 0 auto;
             position: relative;
             z-index: 10;
-            padding: 1.5rem !important;
         }
         
-        .gold-gradient {
-            background: linear-gradient(135deg, #F4D03F, #E5B73B, #C99A2E);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-        
-        .elegant-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            font-size: 2.3rem;
-            background: linear-gradient(135deg, #fff, #F4D03F);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-            margin-bottom: 0.1rem;
-            line-height: 1.2;
-        }
-        
-        .subtitle-premium {
-            color: #a0b8cc;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-            font-size: 0.9rem;
-        }
-        
-        .progress-ring-premium {
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
-            width: 180px;
-            height: 180px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .progress-ring-premium svg {
-            width: 180px;
-            height: 180px;
-        }
-        
-        .counter-premium {
-            font-size: 3.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, #F4D03F);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
-        }
-        
-        .btn-premium {
-            position: relative;
-            border: none;
-            border-radius: 100px;
-            padding: 12px 20px;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-            text-transform: uppercase;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .btn-premium::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .btn-premium:hover::before {
-            left: 100%;
-        }
-        
-        .btn-premium:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.5);
-        }
-        
-        .btn-premium:active {
-            transform: translateY(0) scale(0.98);
-        }
-        
-        .btn-gold {
-            background: linear-gradient(135deg, #F4D03F, #C99A2E);
-            color: #0A1828;
-            font-weight: 700;
-            box-shadow: 0 10px 20px -5px rgba(212, 175, 55, 0.4);
-        }
-        
-        .btn-gold-secondary {
-            background: rgba(20, 35, 50, 0.9);
-            color: #F4D03F;
-            border: 1.5px solid rgba(212, 175, 55, 0.5);
+        /* Marsala Card */
+        .marsala-card {
+            background: rgba(255, 250, 240, 0.95);
             backdrop-filter: blur(10px);
+            border: 2px solid #964b46;
+            border-radius: 40px;
+            padding: 18px 16px;
+            box-shadow: 0 20px 35px -10px rgba(150, 75, 70, 0.3);
         }
         
-        .btn-gold-secondary:hover {
-            background: rgba(30, 45, 65, 0.95);
-            border-color: #F4D03F;
+        /* Header */
+        .marsala-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
         }
         
-        .divider-premium {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.6), rgba(212, 175, 55, 0.3), transparent);
-            margin: 12px 0;
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .badge-premium {
-            background: rgba(212, 175, 55, 0.12);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: #F4D03F;
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            display: inline-block;
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal-premium {
-            background: rgba(15, 28, 42, 0.95);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 36px;
-            box-shadow: 0 50px 80px -20px black, 0 0 0 1px rgba(212, 175, 55, 0.3) inset, 0 0 50px rgba(212, 175, 55, 0.2);
-            padding: 1.5rem !important;
-        }
-        
-        .icon-premium {
-            width: 60px;
-            height: 60px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, #F4D03F, #C99A2E);
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #964b46;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px;
-            box-shadow: 0 15px 20px -8px rgba(212, 175, 55, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.2);
         }
         
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+        .logo-icon i {
+            font-size: 1.4rem;
+            color: #fff5e6;
         }
         
-        .glow-effect {
-            animation: glowPulse 3s infinite;
+        .logo-text {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #964b46;
+            letter-spacing: 0.5px;
         }
         
-        .stat-item {
-            background: rgba(255, 255, 255, 0.03);
+        .header-badge {
+            background: #964b46;
+            padding: 5px 12px;
             border-radius: 20px;
-            padding: 6px 12px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff5e6;
+            letter-spacing: 1px;
         }
         
-        .corner-accent {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            opacity: 0.5;
+        /* User Profile */
+        .user-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: rgba(150, 75, 70, 0.08);
+            border-radius: 30px;
+            margin-bottom: 18px;
+            border: 1px solid #964b46;
         }
         
-        .corner-tl {
-            top: 12px;
-            left: 12px;
-            border-right: none;
-            border-bottom: none;
-            border-radius: 16px 0 0 0;
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            background: #964b46;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .corner-br {
-            bottom: 12px;
-            right: 12px;
-            border-left: none;
-            border-top: none;
-            border-radius: 0 0 16px 0;
+        .user-avatar i {
+            font-size: 1.6rem;
+            color: #fff5e6;
         }
         
-        #greeting {
-            margin-bottom: 0.1rem;
+        .user-text {
+            flex: 1;
+        }
+        
+        .user-text h4 {
+            color: #964b46;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Lora', serif;
+        }
+        
+        .marsala-tick {
+            color: #964b46;
             font-size: 0.9rem;
         }
         
-        .compact-desc {
-            max-width: 240px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 0.85rem;
-        }
-        
-        .grid {
-            gap: 0.5rem;
-        }
-        
-        .footer-compact {
-            margin-top: 0.75rem;
-            gap: 0.5rem;
-        }
-        
-        .footer-compact i {
+        .user-text p {
+            color: #b88a84;
             font-size: 0.7rem;
+            font-weight: 500;
         }
         
-        .footer-compact p {
-            font-size: 0.65rem;
-        }
-        
-        .count-badge {
-            font-size: 0.8rem;
-            background: rgba(212, 175, 55, 0.1);
+        .user-tag {
+            background: #964b46;
+            padding: 4px 12px;
             border-radius: 20px;
-            padding: 2px 8px;
-            display: inline-block;
-            margin-left: 5px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #fff5e6;
+            white-space: nowrap;
         }
         
-        /* Loading animation */
-        .loader {
-            border: 3px solid rgba(212, 175, 55, 0.2);
-            border-top: 3px solid #F4D03F;
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        
+        .stat-item {
+            background: rgba(150, 75, 70, 0.05);
+            border: 1px solid #964b46;
+            border-radius: 24px;
+            padding: 14px 8px;
+            text-align: center;
+        }
+        
+        .stat-icon {
+            width: 36px;
+            height: 36px;
+            background: #fff5e6;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            border: 1px solid #964b46;
+        }
+        
+        .stat-icon i {
+            font-size: 1.1rem;
+            color: #964b46;
+        }
+        
+        .stat-number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #964b46;
+            line-height: 1.2;
+            font-family: 'Lora', serif;
+        }
+        
+        .stat-label {
+            color: #b88a84;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        /* Progress Ring - Marsala */
+        .ring-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 12px 0 16px;
+            position: relative;
+        }
+        
+        .progress-ring {
+            width: 140px;
+            height: 140px;
+        }
+        
+        .progress-ring svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        
+        .ring-bg {
+            stroke: #e6d5c8;
+            stroke-width: 8;
+            fill: none;
+        }
+        
+        .ring-progress {
+            stroke: #964b46;
+            stroke-width: 8;
+            fill: none;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+            filter: drop-shadow(0 0 5px #964b46);
+        }
+        
+        .ring-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .ring-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #964b46;
+            line-height: 1;
+            font-family: 'Lora', serif;
+        }
+        
+        .ring-label {
+            color: #b88a84;
+            font-size: 0.6rem;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 16px 0 12px;
+        }
+        
+        .action-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            letter-spacing: 1px;
+        }
+        
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .action-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .btn-primary {
+            background: #964b46;
+            color: #fff5e6;
+            font-weight: 700;
+        }
+        
+        .btn-primary:hover {
+            background: #b55a54;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #964b46;
+            color: #964b46;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(150, 75, 70, 0.1);
+        }
+        
+        .btn-count {
+            background: rgba(255, 245, 230, 0.3);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 6px;
+            color: #fff5e6;
+        }
+        
+        .btn-secondary .btn-count {
+            background: rgba(150, 75, 70, 0.1);
+            color: #964b46;
+        }
+        
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 12px 0;
+        }
+        
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #e6d5c8;
+            border-top-color: #964b46;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 10px auto;
+            animation: spin 0.8s linear infinite;
         }
         
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Footer */
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #d9b9b0;
+            font-size: 0.6rem;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #964b46;
+        }
+        
+        .footer i {
+            color: #964b46;
+        }
+        
+        /* Welcome Modal */
+        .welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(245, 230, 220, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        
+        .welcome-modal.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .welcome-card {
+            background: #fff5e6;
+            border: 2px solid #964b46;
+            border-radius: 48px;
+            padding: 30px 20px;
+            max-width: 320px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 40px -10px rgba(150, 75, 70, 0.3);
+        }
+        
+        .welcome-icon {
+            width: 70px;
+            height: 70px;
+            background: #964b46;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+        
+        .welcome-icon i {
+            font-size: 2.5rem;
+            color: #fff5e6;
+        }
+        
+        .welcome-title {
+            font-family: 'Lora', serif;
+            font-size: 2.3rem;
+            color: #964b46;
+            margin-bottom: 10px;
+        }
+        
+        .welcome-name {
+            color: #964b46;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: rgba(150, 75, 70, 0.1);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: 1px solid #964b46;
+        }
+        
+        .features {
+            background: rgba(150, 75, 70, 0.05);
+            border-radius: 30px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #964b46;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #5d3a35;
+            padding: 8px 0;
+            border-bottom: 1px solid #964b46;
+            font-size: 0.9rem;
+        }
+        
+        .feature:last-child {
+            border-bottom: none;
+        }
+        
+        .feature i {
+            color: #964b46;
+            width: 20px;
+        }
+        
+        .welcome-btn {
+            background: #964b46;
+            color: #fff5e6;
+            border: none;
+            border-radius: 40px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff5e6;
+            border: 2px solid #964b46;
+            color: #964b46;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        /* Limit Modal */
+        .limit-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(245, 230, 220, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 900;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        
+        .limit-modal.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .limit-card {
+            background: #fff5e6;
+            border: 2px solid #c0392b;
+            border-radius: 40px;
+            padding: 30px 20px;
+            max-width: 300px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .limit-icon {
+            width: 70px;
+            height: 70px;
+            background: #c0392b;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .limit-icon i {
+            font-size: 2.5rem;
+            color: #fff5e6;
+        }
+        
+        .limit-title {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            color: #c0392b;
+            margin-bottom: 15px;
+        }
+        
+        .rules-box {
+            background: rgba(192, 57, 43, 0.05);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #c0392b;
+        }
+        
+        .rule-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #5d3a35;
+            padding: 8px 0;
+            border-bottom: 1px solid #c0392b;
+            font-size: 0.85rem;
+        }
+        
+        .rule-item:last-child {
+            border-bottom: none;
+        }
+        
+        .rule-item i {
+            color: #c0392b;
+            width: 22px;
+        }
+        
+        .rule-number {
+            color: #c0392b;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        
+        .limit-btn {
+            background: #c0392b;
+            color: #fff5e6;
+            border: none;
+            border-radius: 40px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .text-small {
+            font-size: 0.65rem;
+            color: #b88a84;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-3">
-    <!-- Premium background elements -->
-    <div class="bg-pattern"></div>
-    <div class="orb"></div>
-    <div class="orb-2"></div>
+<body>
+    <div class="marsala-bg"></div>
     
     <script>
         Telegram.WebApp.ready();
         Telegram.WebApp.expand();
         
-        const tp = Telegram.WebApp.themeParams;
-        document.documentElement.style.setProperty('--tg-bg', tp.bg_color || '#0A1828');
-        document.documentElement.style.setProperty('--tg-text', tp.text_color || '#F4D03F');
-        document.documentElement.style.setProperty('--tg-button', tp.button_color || '#C99A2E');
-        document.documentElement.style.setProperty('--tg-button-text', tp.button_text_color || '#0A1828');
+        // ========== CONFIG ==========
+        const ADMIN_ID = "admin_username"; // Change this
+        const ADS_KEY = "marsala_ads";
+        const WELCOME_KEY = "marsala_welcome";
+        
+        // ========== DATA ==========
+        let ads = { inter: 0, pop: 0, total: 0, date: '' };
+        
+        const MAX_ADS = 60;
+        const CIRCUMFERENCE = 377; // 2 * π * 60
+        
+        // ========== GET TELEGRAM USER ==========
+        const user = Telegram.WebApp.initDataUnsafe.user;
+        let displayName = "User";
+        let username = "";
+        let fullName = "Premium Member";
+        
+        console.log("Telegram User Data:", user);
+        
+        if (user) {
+            if (user.username) {
+                displayName = "@" + user.username;
+                username = user.username;
+                fullName = user.first_name || "Premium Member";
+                if (user.last_name) {
+                    fullName += " " + user.last_name;
+                }
+            } else if (user.first_name) {
+                displayName = user.first_name;
+                fullName = user.first_name;
+                if (user.last_name) {
+                    displayName += " " + user.last_name;
+                    fullName += " " + user.last_name;
+                }
+            }
+        }
+        
+        console.log("Display Name:", displayName);
+        
+        // ========== LOAD ADS ==========
+        function loadData() {
+            const today = new Date();
+            const todayStr = today.toDateString();
+            
+            const adsData = localStorage.getItem(ADS_KEY);
+            
+            if (adsData) {
+                try {
+                    const data = JSON.parse(adsData);
+                    if (data.date === todayStr) {
+                        ads = data;
+                    } else {
+                        ads = { inter: 0, pop: 0, total: 0, date: todayStr };
+                    }
+                } catch (e) {
+                    ads = { inter: 0, pop: 0, total: 0, date: todayStr };
+                }
+            } else {
+                ads = { inter: 0, pop: 0, total: 0, date: todayStr };
+            }
+            
+            saveAds();
+            updateUI();
+        }
+        
+        function saveAds() {
+            localStorage.setItem(ADS_KEY, JSON.stringify(ads));
+        }
+        
+        // ========== UPDATE UI ==========
+        function updateUI() {
+            // Stats
+            document.getElementById('interValue').textContent = ads.inter;
+            document.getElementById('popValue').textContent = ads.pop;
+            
+            // Ring
+            const ringProgress = (ads.total / MAX_ADS) * 100;
+            const offset = CIRCUMFERENCE - (CIRCUMFERENCE * ringProgress / 100);
+            document.getElementById('progressRing').style.strokeDashoffset = offset;
+            document.getElementById('ringNumber').textContent = ads.total;
+            
+            // Badges
+            document.getElementById('interBadge').textContent = 55 - ads.inter;
+            document.getElementById('popBadge').textContent = 5 - ads.pop;
+            
+            // Buttons
+            document.getElementById('interBtn').disabled = ads.inter >= 55 || ads.total >= MAX_ADS;
+            document.getElementById('popBtn').disabled = ads.pop >= 5 || ads.total >= MAX_ADS || ads.inter < 55;
+            
+            // Check if limit reached
+            if (ads.total >= MAX_ADS) {
+                document.getElementById('limitModal').classList.add('show');
+            }
+        }
+        
+        // ========== ADS FUNCTIONS ==========
+        function checkSDK() {
+            return typeof show_10734218 === 'function';
+        }
+        
+        function showInterstitial() {
+            if (ads.inter >= 55) {
+                alert('✨ USE POPUP BUTTON NOW!');
+                return;
+            }
+            
+            if (ads.total >= MAX_ADS) {
+                document.getElementById('limitModal').classList.add('show');
+                return;
+            }
+            
+            if (!checkSDK()) {
+                alert('⏳ LOADING ADS...');
+                return;
+            }
+            
+            document.getElementById('loading').classList.remove('hidden');
+            
+            show_10734218()
+                .then(() => {
+                    ads.inter++;
+                    ads.total++;
+                    saveAds();
+                    updateUI();
+                    document.getElementById('loading').classList.add('hidden');
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+                    
+                    if (ads.inter === 55) {
+                        alert('🎉 55 DONE! NOW USE POPUP');
+                    }
+                    
+                    if (ads.total >= MAX_ADS) {
+                        document.getElementById('limitModal').classList.add('show');
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('loading').classList.add('hidden');
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+                });
+        }
+        
+        function showPopup() {
+            if (ads.inter < 55) {
+                alert(`⏳ NEED ${55 - ads.inter} MORE INTERSTITIAL`);
+                return;
+            }
+            
+            if (ads.pop >= 5) {
+                alert('✅ ALL POPUP COMPLETED!');
+                return;
+            }
+            
+            if (ads.total >= MAX_ADS) {
+                document.getElementById('limitModal').classList.add('show');
+                return;
+            }
+            
+            if (!checkSDK()) {
+                alert('⏳ LOADING ADS...');
+                return;
+            }
+            
+            document.getElementById('loading').classList.remove('hidden');
+            
+            show_10734218('pop')
+                .then(() => {
+                    ads.pop++;
+                    ads.total++;
+                    saveAds();
+                    updateUI();
+                    document.getElementById('loading').classList.add('hidden');
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+                    
+                    if (ads.total >= MAX_ADS) {
+                        document.getElementById('limitModal').classList.add('show');
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('loading').classList.add('hidden');
+                    Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+                });
+        }
+        
+        // ========== RESET ==========
+        function resetCounter() {
+            ads = { inter: 0, pop: 0, total: 0, date: new Date().toDateString() };
+            saveAds();
+            updateUI();
+            document.getElementById('limitModal').classList.remove('show');
+            Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+            
+            localStorage.removeItem(WELCOME_KEY);
+            setTimeout(showWelcomeModal, 500);
+        }
+        
+        // ========== WELCOME ==========
+        function showWelcomeModal() {
+            document.getElementById('welcomeName').innerHTML = displayName + ' <i class="fas fa-heart"></i>';
+            document.getElementById('welcomeModal').classList.add('show');
+        }
+        
+        function closeWelcome() {
+            document.getElementById('welcomeModal').classList.remove('show');
+        }
+        
+        function checkWelcome() {
+            if (!localStorage.getItem(WELCOME_KEY)) {
+                setTimeout(showWelcomeModal, 500);
+                localStorage.setItem(WELCOME_KEY, 'true');
+            }
+        }
+        
+        // ========== CONTACT ADMIN ==========
+        function contactAdmin() {
+            let msg = "Hello Admin, I need help!";
+            if (username) {
+                msg = `Hello Admin, I'm @${username} and I need help.`;
+            }
+            window.open(`https://t.me/${ADMIN_ID}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+        
+        function closeLimitModal() {
+            document.getElementById('limitModal').classList.remove('show');
+        }
+        
+        // ========== INIT ==========
+        window.onload = () => {
+            loadData();
+            
+            // Set user info
+            document.getElementById('userName').innerHTML = displayName + ' <span class="marsala-tick"><i class="fas fa-heart"></i></span>';
+            document.getElementById('userStatus').textContent = fullName + ' • MARSALA MEMBER';
+            
+            checkWelcome();
+        };
     </script>
     
-    <div class="card text-center relative compact">
-        <!-- Corner accents -->
-        <div class="corner-accent corner-tl"></div>
-        <div class="corner-accent corner-br"></div>
-        
-        <!-- Greeting -->
-        <div class="flex items-center justify-center gap-2 mb-2">
-            <i class="fas fa-crown text-sm" style="color: #F4D03F;"></i>
-            <h2 id="greeting" class="subtitle-premium"></h2>
-        </div>
-        
-        <!-- Title -->
-        <h1 class="elegant-title">
-           TooL H4X0R
-        </h1>
-        <div class="text-xl gold-gradient mb-1">v3.0</div>
-        
-        <!-- Premium badge with counts -->
-        <div class="badge-premium mb-3">
-            <i class="fas fa-gem mr-1 text-xs"></i> PREMIUM ACCESS
-        </div>
-        
-        <!-- Description -->
-        <p class="subtitle-premium compact-desc mb-3 leading-relaxed">
-            Watch ads and earn rewards. Simple, fast, and secure.
-        </p>
-        
-        <!-- Stats row with counters -->
-        <div class="flex justify-center gap-2 mb-3">
-            <div class="stat-item flex items-center">
-                <i class="fas fa-bolt text-xs" style="color: #F4D03F;"></i>
-                <span class="text-xs text-gray-400 ml-1" id="interstitialCount">I:0</span>
+    <!-- Main Container -->
+    <div class="mobile-container">
+        <div class="marsala-card">
+            <!-- Header -->
+            <div class="marsala-header">
+                <div class="logo-area">
+                    <div class="logo-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <span class="logo-text">MARSALA</span>
+                </div>
+                <div class="header-badge">
+                    <i class="fas fa-star"></i> ELITE
+                </div>
             </div>
-            <div class="stat-item flex items-center">
-                <i class="fas fa-window-maximize text-xs" style="color: #F4D03F;"></i>
-                <span class="text-xs text-gray-400 ml-1" id="popupCount">P:0</span>
+            
+            <!-- User Profile -->
+            <div class="user-row">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-text">
+                    <h4 id="userName">User <span class="marsala-tick"><i class="fas fa-heart"></i></span></h4>
+                    <p id="userStatus">MARSALA MEMBER</p>
+                </div>
+                <div class="user-tag">
+                    <i class="fas fa-heart"></i> VIP
+                </div>
             </div>
-        </div>
-        
-        <!-- Progress circle -->
-        <div class="relative progress-ring-premium mx-auto mb-3">
-            <svg class="w-full h-full -rotate-90">
-                <defs>
-                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#F4D03F" />
-                        <stop offset="50%" stop-color="#E5B73B" />
-                        <stop offset="100%" stop-color="#C99A2E" />
-                    </linearGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                <!-- Background circle -->
-                <circle cx="90" cy="90" r="75" stroke="rgba(212, 175, 55, 0.15)" stroke-width="10" fill="none"/>
-                <!-- Progress circle with glow -->
-                <circle id="progressCircle" cx="90" cy="90" r="75" stroke="url(#goldGradient)" stroke-width="10" fill="none"
-                        stroke-dasharray="471" stroke-dashoffset="471" stroke-linecap="round"
-                        class="transition-all duration-1000 ease-out" filter="url(#glow)"/>
-            </svg>
-            <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <div id="counter" class="counter-premium">0</div>
-                <div class="text-xs subtitle-premium -mt-1">of 60</div>
+            
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="stat-number" id="interValue">0</div>
+                    <div class="stat-label">INTER</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-window-maximize"></i>
+                    </div>
+                    <div class="stat-number" id="popValue">0</div>
+                    <div class="stat-label">POPUP</div>
+                </div>
             </div>
-        </div>
-        
-        <!-- Divider -->
-        <div class="divider-premium"></div>
-        
-        <!-- Action buttons -->
-        <div class="grid grid-cols-1 gap-2">
-            <button id="watchInterstitialBtn" 
-                    class="btn-premium btn-gold disabled:opacity-40 disabled:cursor-not-allowed">
-                <i class="fas fa-play mr-2"></i> INTERSTITIAL <span id="interstitialBadge" class="count-badge">55 left</span>
-            </button>
-            <button id="watchPopupBtn" 
-                    class="btn-premium btn-gold-secondary disabled:opacity-40 disabled:cursor-not-allowed">
-                <i class="fas fa-window-maximize mr-2"></i> POPUP <span id="popupBadge" class="count-badge">5 left</span>
-            </button>
-        </div>
-        
-        <!-- Loading indicator (hidden by default) -->
-        <div id="loadingIndicator" class="hidden mt-3">
-            <div class="loader"></div>
-            <p class="text-xs text-gray-400 mt-1">Loading ad...</p>
-        </div>
-        
-        <!-- Footer note -->
-        <div class="flex items-center justify-center footer-compact mt-2">
-            <i class="fas fa-shield-alt" style="color: #F4D03F; opacity: 0.5;"></i>
-            <p class="text-xs subtitle-premium">Secure • Fast • Rewarding</p>
-            <i class="fas fa-shield-alt" style="color: #F4D03F; opacity: 0.5;"></i>
+            
+            <!-- Ring -->
+            <div class="ring-wrapper">
+                <svg class="progress-ring" viewBox="0 0 140 140">
+                    <circle class="ring-bg" cx="70" cy="70" r="60"></circle>
+                    <circle id="progressRing" class="ring-progress" cx="70" cy="70" r="60"
+                            stroke-dasharray="377" stroke-dashoffset="377"></circle>
+                </svg>
+                <div class="ring-center">
+                    <div class="ring-number" id="ringNumber">0</div>
+                    <div class="ring-label">OF 60</div>
+                </div>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="action-buttons">
+                <button id="interBtn" class="action-btn btn-primary" onclick="showInterstitial()">
+                    <i class="fas fa-play"></i>
+                    INTER
+                    <span id="interBadge" class="btn-count">55</span>
+                </button>
+                <button id="popBtn" class="action-btn btn-secondary" onclick="showPopup()">
+                    <i class="fas fa-window-maximize"></i>
+                    POPUP
+                    <span id="popBadge" class="btn-count">5</span>
+                </button>
+            </div>
+            
+            <!-- Loading -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <span class="text-small">LOADING...</span>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <i class="fas fa-shield-alt"></i>
+                <span>55/5 SYSTEM</span>
+                <i class="fas fa-shield-alt"></i>
+            </div>
         </div>
     </div>
     
-    <!-- 60 Ads Limit Modal - Airplane Mode Instruction -->
-    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-70 backdrop-blur-md flex items-center justify-center p-4 z-50 transition-all">
-        <div class="modal-premium max-w-sm w-full text-center relative">
-            <div class="icon-premium">
-                <i class="fas fa-plane text-2xl" style="color: #0A1828;"></i>
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="welcome-modal">
+        <div class="welcome-card">
+            <div class="close-btn" onclick="closeWelcome()">
+                <i class="fas fa-times"></i>
             </div>
-            <h2 class="text-2xl font-bold mb-1 gold-gradient">LIMIT REACHED</h2>
-            <div class="badge-premium mb-3">MAXIMUM 60 ADS</div>
-            <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                <i class="fas fa-wifi-slash mr-1"></i> Turn OFF Wi-Fi/Mobile Data<br>
-                <i class="fas fa-plane mr-1"></i> Enable Airplane Mode for 10 seconds<br>
-                <i class="fas fa-sync-alt mr-1"></i> Then click RESET
-            </p>
-            <button id="resetBtn" 
-                    class="btn-premium btn-gold w-full text-base py-3">
-                <i class="fas fa-sync-alt mr-2"></i> RESET COUNTER
-            </button>
-            <p class="text-xs text-gray-500 mt-3">IP will be reset automatically</p>
+            <div class="welcome-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h2 class="welcome-title">WELCOME</h2>
+            <div class="welcome-name" id="welcomeName">User <i class="fas fa-heart"></i></div>
+            <div class="features">
+                <div class="feature"><i class="fas fa-bolt"></i> 55 INTERSTITIAL</div>
+                <div class="feature"><i class="fas fa-window-maximize"></i> 5 POPUP</div>
+                <div class="feature"><i class="fas fa-clock"></i> DAILY RESET</div>
+                <div class="feature"><i class="fas fa-heart"></i> MARSALA STYLE</div>
+            </div>
+            <button class="welcome-btn" onclick="closeWelcome()">ENTER</button>
         </div>
     </div>
-
-    <!-- 15s Ad Modal (Shows after every 3 ads) -->
-    <div id="fifteenSecModal" class="hidden fixed inset-0 bg-black bg-opacity-70 backdrop-blur-md flex items-center justify-center p-4 z-50 transition-all">
-        <div class="modal-premium max-w-sm w-full text-center">
-            <div class="icon-premium glow-effect">
-                <i class="fas fa-hourglass-half text-2xl" style="color: #0A1828;"></i>
+    
+    <!-- Limit Modal -->
+    <div id="limitModal" class="limit-modal">
+        <div class="limit-card">
+            <div class="limit-icon">
+                <i class="fas fa-hourglass-end"></i>
             </div>
-            <h2 class="text-xl font-bold mb-1 gold-gradient">15 SECONDS REQUIRED</h2>
-            <div class="badge-premium mb-3">3 ADS COMPLETED</div>
-            <p class="text-gray-300 text-sm mb-4">
-                Watch <span class="gold-gradient font-bold">15 second ad</span> to continue
-            </p>
-            <button id="watchFifteenSecBtn" 
-                    class="btn-premium btn-gold w-full mb-2 text-base py-3">
-                <i class="fas fa-play mr-2"></i> WATCH 15s AD
-            </button>
-            <button id="skipFifteenSecBtn" 
-                    class="text-xs subtitle-premium hover:text-[#F4D03F] transition-colors">
-                Maybe later
+            <h2 class="limit-title">LIMIT</h2>
+            
+            <div class="rules-box">
+                <div class="rule-item">
+                    <i class="fas fa-wifi-slash"></i>
+                    <span><span class="rule-number">1.</span> IP OFF</span>
+                </div>
+                <div class="rule-item">
+                    <i class="fab fa-google"></i>
+                    <span><span class="rule-number">2.</span> RESET GOOGLE ADS</span>
+                </div>
+                <div class="rule-item">
+                    <i class="fas fa-plane"></i>
+                    <span><span class="rule-number">3.</span> AIRPLANE MODE 10s</span>
+                </div>
+                <div class="rule-item">
+                    <i class="fas fa-rotate-right"></i>
+                    <span><span class="rule-number">4.</span> RESET COUNTER</span>
+                </div>
+            </div>
+            
+            <p class="text-small" style="margin: 10px 0;">60/60 COMPLETED</p>
+            
+            <button class="limit-btn" onclick="resetCounter()">
+                <i class="fas fa-rotate-right"></i> RESET
             </button>
         </div>
     </div>
     
     <script>
-        // Ad counters
-        let interstitialCount = 0;
-        let popupCount = 0;
-        let totalAds = 0;
-        const maxAds = 60;
-        const fullCircumference = 471;
-        
-        // Flags
-        let lastAdType = null;
-        let consecutiveAds = 0;
-        let adSdkReady = false;
-        
-        const user = Telegram.WebApp.initDataUnsafe.user;
-        const displayName = user?.username ? '@' + user.username : (user?.first_name || 'User');
-        document.getElementById('greeting').innerHTML = `Welcome, <span class="gold-gradient">${displayName}</span>`;
-        
-        // Check if ad SDK is loaded
-        function checkAdSdk() {
-            if (typeof show_10734218 === 'function') {
-                adSdkReady = true;
-                console.log('✅ Ad SDK loaded successfully');
-                return true;
-            } else {
-                console.log('⏳ Waiting for Ad SDK to load...');
-                return false;
-            }
-        }
-        
-        // Wait for SDK to load
-        function waitForAdSdk(callback, maxAttempts = 20) {
-            let attempts = 0;
-            const interval = setInterval(() => {
-                attempts++;
-                if (checkAdSdk()) {
-                    clearInterval(interval);
-                    if (callback) callback();
-                } else if (attempts >= maxAttempts) {
-                    clearInterval(interval);
-                    console.log('⚠️ Ad SDK load timeout');
-                    alert('Ad service is taking too long. Please refresh the page.');
-                }
-            }, 500);
-        }
-        
-        function loadCounts() {
-            const today = new Date().toDateString();
-            const savedDate = localStorage.getItem('adsDate');
-            const savedInterstitial = localStorage.getItem('interstitialCount');
-            const savedPopup = localStorage.getItem('popupCount');
-            const savedTotal = localStorage.getItem('totalAds');
-            
-            if (savedDate === today) {
-                interstitialCount = savedInterstitial ? parseInt(savedInterstitial) : 0;
-                popupCount = savedPopup ? parseInt(savedPopup) : 0;
-                totalAds = savedTotal ? parseInt(savedTotal) : 0;
-            } else {
-                // New day - reset all counters
-                interstitialCount = 0;
-                popupCount = 0;
-                totalAds = 0;
-                localStorage.setItem('adsDate', today);
-                localStorage.setItem('interstitialCount', '0');
-                localStorage.setItem('popupCount', '0');
-                localStorage.setItem('totalAds', '0');
-            }
-            
-            // Validate counts don't exceed max
-            if (totalAds > maxAds) totalAds = maxAds;
-            if (interstitialCount > 55) interstitialCount = 55;
-            if (popupCount > 5) popupCount = 5;
-            
-            updateUI();
-        }
-        
-        function updateUI() {
-            // Update main counter
-            document.getElementById('counter').textContent = totalAds;
-            
-            // Update progress circle
-            const progress = (totalAds / maxAds) * 100;
-            const offset = fullCircumference - (fullCircumference * progress / 100);
-            document.getElementById('progressCircle').style.strokeDashoffset = offset;
-            
-            // Update badges
-            const interstitialLeft = 55 - interstitialCount;
-            const popupLeft = 5 - popupCount;
-            
-            document.getElementById('interstitialBadge').textContent = interstitialLeft + ' left';
-            document.getElementById('popupBadge').textContent = popupLeft + ' left';
-            
-            document.getElementById('interstitialCount').textContent = 'I:' + interstitialCount;
-            document.getElementById('popupCount').textContent = 'P:' + popupCount;
-            
-            // Enable/disable buttons based on limits
-            const btn1 = document.getElementById('watchInterstitialBtn');
-            const btn2 = document.getElementById('watchPopupBtn');
-            
-            if (totalAds >= maxAds) {
-                btn1.disabled = true;
-                btn2.disabled = true;
-                document.getElementById('modal').classList.remove('hidden');
-            } else {
-                // Check individual limits
-                btn1.disabled = (interstitialCount >= 55);
-                btn2.disabled = (popupCount >= 5);
-            }
-        }
-        
-        function incrementCount(type) {
-            if (type === 'interstitial') {
-                interstitialCount++;
-                localStorage.setItem('interstitialCount', interstitialCount.toString());
-            } else if (type === 'popup') {
-                popupCount++;
-                localStorage.setItem('popupCount', popupCount.toString());
-            }
-            
-            totalAds++;
-            localStorage.setItem('totalAds', totalAds.toString());
-            
-            updateUI();
-            
-            // Check for 15s ad modal (after every 3 ads, but not at 60)
-            if (totalAds % 3 === 0 && totalAds < maxAds && totalAds > 0) {
-                showFifteenSecModal();
-            }
-        }
-        
-        function showFifteenSecModal() {
-            if (totalAds >= maxAds) return;
-            document.getElementById('fifteenSecModal').classList.remove('hidden');
-            Telegram.WebApp.HapticFeedback.impactOccurred('light');
-        }
-        
-        function watchFifteenSecAd() {
-            document.getElementById('fifteenSecModal').classList.add('hidden');
-            
-            if (totalAds >= maxAds) {
-                document.getElementById('modal').classList.remove('hidden');
-                return;
-            }
-            
-            if (!checkAdSdk()) {
-                alert('Ad service is loading. Please try again in a moment.');
-                return;
-            }
-            
-            // Show loading
-            document.getElementById('loadingIndicator').classList.remove('hidden');
-            Telegram.WebApp.HapticFeedback.impactOccurred('medium');
-            
-            // Show interstitial ad (15s version)
-            const adPromise = show_10734218();
-            
-            adPromise
-                .then(() => {
-                    document.getElementById('loadingIndicator').classList.add('hidden');
-                    // Determine which type to increment based on what's available
-                    if (interstitialCount < 55) {
-                        incrementCount('interstitial');
-                    } else if (popupCount < 5) {
-                        incrementCount('popup');
-                    }
-                    Telegram.WebApp.HapticFeedback.notificationOccurred('success');
-                })
-                .catch((err) => {
-                    document.getElementById('loadingIndicator').classList.add('hidden');
-                    console.log('Ad was closed or error:', err);
-                    Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-                });
-        }
-        
-        function resetCounter() {
-            // Reset all counters
-            interstitialCount = 0;
-            popupCount = 0;
-            totalAds = 0;
-            
-            localStorage.setItem('interstitialCount', '0');
-            localStorage.setItem('popupCount', '0');
-            localStorage.setItem('totalAds', '0');
-            
-            updateUI();
-            
-            // Hide all modals
-            document.getElementById('modal').classList.add('hidden');
-            document.getElementById('fifteenSecModal').classList.add('hidden');
-            
-            Telegram.WebApp.HapticFeedback.notificationOccurred('success');
-            
-            // Show success message
-            alert('✅ Counter reset successful!\nIP and data have been cleared.');
-        }
-        
-        function showAd(type) {
-            if (totalAds >= maxAds) {
-                document.getElementById('modal').classList.remove('hidden');
-                return;
-            }
-            
-            // Check individual limits
-            if (type === 'interstitial' && interstitialCount >= 55) {
-                alert('❌ You have reached the maximum interstitial ads (55). Please use popup ads.');
-                return;
-            }
-            if (type === 'popup' && popupCount >= 5) {
-                alert('❌ You have reached the maximum popup ads (5). Please use interstitial ads.');
-                return;
-            }
-            
-            if (!checkAdSdk()) {
-                alert('Ad service is loading. Please try again in a moment.');
-                return;
-            }
-            
-            // Show loading
-            document.getElementById('loadingIndicator').classList.remove('hidden');
-            Telegram.WebApp.HapticFeedback.impactOccurred('medium');
-            
-            // Track consecutive ads
-            if (lastAdType === type) {
-                consecutiveAds++;
-            } else {
-                consecutiveAds = 1;
-                lastAdType = type;
-            }
-            
-            // Show appropriate ad type
-            const adPromise = type === 'popup' ? show_10734218('pop') : show_10734218();
-            
-            adPromise
-                .then(() => {
-                    document.getElementById('loadingIndicator').classList.add('hidden');
-                    incrementCount(type);
-                    Telegram.WebApp.HapticFeedback.notificationOccurred('success');
-                })
-                .catch((err) => {
-                    document.getElementById('loadingIndicator').classList.add('hidden');
-                    console.log('Ad was closed or error:', err);
-                    Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-                });
-        }
-        
-        // Event Listeners
-        document.getElementById('watchInterstitialBtn').onclick = () => showAd('interstitial');
-        document.getElementById('watchPopupBtn').onclick = () => showAd('popup');
-        document.getElementById('resetBtn').onclick = resetCounter;
-        document.getElementById('watchFifteenSecBtn').onclick = watchFifteenSecAd;
-        document.getElementById('skipFifteenSecBtn').onclick = () => {
-            document.getElementById('fifteenSecModal').classList.add('hidden');
-        };
-        
-        // Handle back button
-        Telegram.WebApp.BackButton.onClick(() => {
-            if (!document.getElementById('modal').classList.contains('hidden')) {
-                document.getElementById('modal').classList.add('hidden');
-            }
-            if (!document.getElementById('fifteenSecModal').classList.contains('hidden')) {
-                document.getElementById('fifteenSecModal').classList.add('hidden');
-            }
-        });
-        
-        window.onload = () => {
-            loadCounts();
-            
-            // Wait for ad SDK to load
-            waitForAdSdk(() => {
-                console.log('✅ Ad SDK ready!');
-                // Enable buttons if needed
-                updateUI();
-            });
-            
-            // Fade in animations
-            setTimeout(() => {
-                document.querySelectorAll('.opacity-0').forEach(el => {
-                    el.classList.remove('opacity-0');
-                });
-            }, 100);
-        };
+        window.showInterstitial = showInterstitial;
+        window.showPopup = showPopup;
+        window.resetCounter = resetCounter;
+        window.closeWelcome = closeWelcome;
+        window.closeLimitModal = closeLimitModal;
+        window.contactAdmin = contactAdmin;
     </script>
 </body>
 </html>
