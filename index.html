@@ -959,25 +959,45 @@
         </div>
     </div>
     
-    <!-- Welcome Modal - এখানেও Telegram Name দেখাবে -->
+    <!-- Welcome Modal - শুধু লোকেশন সেটিংস -->
     <div id="welcomeModal" class="welcome-modal">
         <div class="welcome-card">
             <div class="close-btn" onclick="closeWelcome()">
                 <i class="fas fa-times"></i>
             </div>
             <div class="welcome-icon">
-                <i class="fas fa-gem"></i>
+                <i class="fas fa-globe"></i>
             </div>
-            <h2 class="welcome-title">WELCOME</h2>
-            <!-- এই div-এ টেলিগ্রাম নাম দেখাবে -->
+            <h2 class="welcome-title">LOCATION SETTINGS</h2>
+            <!-- ইউজারের নাম দেখাচ্ছে -->
             <div class="welcome-name" id="welcomeName">User <i class="fas fa-gem"></i></div>
+            
+            <!-- শুধু লোকেশন সেটিংসের ফিচার -->
             <div class="features">
-                <div class="feature"><i class="fas fa-bolt"></i> 55 INTERSTITIAL</div>
-                <div class="feature"><i class="fas fa-window-maximize"></i> 5 POPUP</div>
-                <div class="feature"><i class="fas fa-clock"></i>  RESET</div>
-                <div class="feature"><i class="fas fa-gem"></i> DEV.SAKIB HOSSAIN</div>
+                <div class="feature">
+                    <i class="fas fa-globe"></i> 
+                    <span style="color: #ff4444; font-weight: bold;">Set Zone: Australia</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-wifi"></i> 
+                    <span style="color: #4caf50; font-weight: bold;">IP ON Required</span>
+                </div>
+ 
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i> 
+                    <span>Keep Internet ON</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-play-circle"></i> 
+                    <span>Then Start Watching</span>
+                </div>
+              <div class="feature">
+                    <i class="fas fa-laptop"></i> 
+                    <span>DEV.SAKIB HOSSAIN</span>
+                </div>
             </div>
-            <button class="welcome-btn" onclick="closeWelcome()">ENTER</button>
+            
+            <button class="welcome-btn" onclick="closeWelcome()">GOT IT</button>
         </div>
     </div>
     
